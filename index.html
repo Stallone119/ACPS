@@ -5,10 +5,8 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>ANOINTED CHILD PREPARATORY SCHOOL</title>
-   <link rel="icon" href="img/schlogo.jpg">
    <link rel="stylesheet" href="css/index.css">
    <link rel="stylesheet" href="css/index-responsive.css">
-   <!-- <link rel="stylesheet" href="../fontawesome-free-6.4.2-web/css/all.css"> -->
 </head>
 
 <body>
@@ -16,7 +14,7 @@
       <header class="mainHeader">
          <section class="logoSec">
             <div class="logo-placeholder">
-               <img src="img/schlogo.jpg" alt="School Logo" id="school-logo">
+               <img src="img/logo.png" alt="School Logo" id="school-logo">
                <span>ACPS</span>
             </div>
             <div class="school-name">
@@ -36,6 +34,8 @@
             <span><a href="headmaster.html">Headmaster</a></span>
             <span><a href="staff.html">Staff</a></span>
             <span><a href="students.html">Students</a></span>
+            <span><a href="announcements.html">Announcements</a></span>
+            <span><a href="gallery.html">Gallery</a></span>
          </section>
 
          <section class="hamburgerIcon" id="hamburgerIcon" onclick="showMenu()">
@@ -88,37 +88,49 @@
             </p>
             <p class="signature">
                Yours in Service,<br>
-               <strong>[Headteacher's Name]</strong><br>
-               Headteacher, Anointed Child Preparatory School
+               <strong>Mr. Samuel Kwesi Anokye</strong><br>
+               Headmaster, Anointed Child Preparatory School
             </p>
          </section>
       </section>
    </div>
 
-   <!-- Announcements Section -->
-   <div class="announcements-section">
+   <!-- Latest Announcements Preview -->
+   <div class="announcements-preview">
       <section class="headingSec">
-         <h1><span class="highlight">School</span> Announcements</h1>
+         <h1><span class="highlight">Latest</span> Announcements</h1>
+         <p>
+            Stay informed with the most recent updates and important notices from our school.
+         </p>
       </section>
       
-      <section class="announcements-list">
-         <div class="announcement-item">
-            <h3>Term 2 Resumption</h3>
-            <p class="date">Posted: May 15, 2023</p>
-            <p>School resumes for the second term on June 5, 2023. All students are expected to be in school by 7:30 AM.</p>
+      <section class="announcements-grid">
+         <div class="announcement-card">
+            <div class="announcement-badge urgent">Urgent</div>
+            <h3>Term 3 Resumption</h3>
+            <p class="date">Posted: August 20, 2023</p>
+            <p>School resumes for the third term on September 4, 2023. All students are expected to be in school by 7:30 AM.</p>
+            <a href="announcements.html" class="read-more">Read More</a>
          </div>
          
-         <div class="announcement-item">
-            <h3>Parent-Teacher Association Meeting</h3>
-            <p class="date">Posted: May 10, 2023</p>
-            <p>The next PTA meeting will be held on May 25, 2023, at 3:00 PM in the school hall. All parents are encouraged to attend.</p>
+         <div class="announcement-card">
+            <div class="announcement-badge important">Important</div>
+            <h3>PTA Meeting</h3>
+            <p class="date">Posted: August 18, 2023</p>
+            <p>The next PTA meeting will be held on September 8, 2023. All parents are encouraged to attend.</p>
+            <a href="announcements.html" class="read-more">Read More</a>
          </div>
          
-         <div class="announcement-item">
-            <h3>Inter-School Sports Competition</h3>
-            <p class="date">Posted: May 5, 2023</p>
-            <p>Our school will be participating in the district inter-school sports competition on May 20, 2023. Come support our team!</p>
+         <div class="announcement-card">
+            <h3>Sports Competition</h3>
+            <p class="date">Posted: August 15, 2023</p>
+            <p>Our school will be participating in the district inter-school sports competition on September 15, 2023.</p>
+            <a href="announcements.html" class="read-more">Read More</a>
          </div>
+      </section>
+
+      <section class="view-all-section">
+         <a href="announcements.html" class="view-all-btn">View All Announcements</a>
       </section>
    </div>
 
@@ -155,11 +167,11 @@
             <h3>Upper Primary</h3>
             <p>
                Our upper primary program (Classes 4-6) challenges students with an expanded curriculum 
-               that includes Science, Mathematics, ICT, and French. We prepare students for leadership and responsibility, 
-               while exploring their skills.
+               that includes Science, Mathematics, ICT, and French. We prepare students for leadership and responsibility.
             </p>
          </section>
-          <section class="courseSec">
+
+         <section class="courseSec">
             <h3>Junior High School</h3>
             <p>
                Our Junior High School Program challenges students with an expanded curriculum 
@@ -221,7 +233,8 @@
                <li>Leadership opportunities</li>
             </ul>
          </div>
-          <div class="class-item">
+
+         <div class="class-item">
             <h3>JHS 1-3</h3>
             <p>Ages 12-17 years</p>
             <ul>
@@ -234,131 +247,70 @@
    </div>
 
    <!-- Status Section -->
-<div class="status-section">
-   <section class="headingSec">
-      <h1><span class="highlight">School</span> Status</h1>
-      <p>
-         We offer both Day and Boarding options to meet the diverse needs of our students 
-         and their families. Each option provides a supportive environment for academic 
-         excellence and personal growth.
-      </p>
-   </section>
+   <div class="status-section">
+      <section class="headingSec">
+         <h1><span class="highlight">School</span> Status</h1>
+         <p>
+            We offer both Day and Boarding options to meet the diverse needs of our students 
+            and their families. Each option provides a supportive environment for academic 
+            excellence and personal growth.
+         </p>
+      </section>
 
-   <section class="status-grid">
-      <div class="status-item day-status">
-         <div class="status-icon">
-            <i class="fa-solid fa-sun"></i>
+      <section class="status-grid">
+         <div class="status-item day-status">
+            <div class="status-icon">
+               <i class="fa-solid fa-sun"></i>
+            </div>
+            <h3>Day School</h3>
+            <p class="status-description">For students who prefer to return home after school hours</p>
+            <div class="status-features">
+               <h4>Features:</h4>
+               <ul>
+                  <li>School hours: 7:30 AM - 3:30 PM</li>
+                  <li>After-school care available until 5:30 PM</li>
+                  <li>Daily homework supervision</li>
+                  <li>Extracurricular activities</li>
+                  <li>Regular parent-teacher interaction</li>
+                  <li>Transportation services available</li>
+               </ul>
+            </div>
          </div>
-         <h3>Day School</h3>
-         <p class="status-description">For students who prefer to return home after school hours</p>
-         <div class="status-features">
-            <h4>Features:</h4>
-            <ul>
-               <li>School hours: 7:30 AM - 3:30 PM</li>
-               <li>After-school care available until 5:30 PM</li>
-               <li>Daily homework supervision</li>
-               <li>Extracurricular activities</li>
-               <li>Regular parent-teacher interaction</li>
-               <li>Transportation services available</li>
-            </ul>
+         
+         <div class="status-item boarding-status">
+            <div class="status-icon">
+               <i class="fa-solid fa-bed"></i>
+            </div>
+            <h3>Boarding School</h3>
+            <p class="status-description">Full residential program with comprehensive care</p>
+            <div class="status-features">
+               <h4>Features:</h4>
+               <ul>
+                  <li>24/7 supervised accommodation</li>
+                  <li>Structured study hours</li>
+                  <li>Nutritious meals (breakfast, lunch, dinner)</li>
+                  <li>Weekend activities and excursions</li>
+                  <li>Laundry and housekeeping services</li>
+                  <li>Medical care available</li>
+               </ul>
+            </div>
          </div>
-         <div class="status-benefits">
-            <h4>Benefits:</h4>
-            <ul>
-               <li>Family time in evenings</li>
-               <li>Home-cooked meals</li>
-               <li>Local community involvement</li>
-               <li>Flexible scheduling</li>
-            </ul>
-         </div>
-      </div>
-      
-      <div class="status-item boarding-status">
-         <div class="status-icon">
-            <i class="fa-solid fa-bed"></i>
-         </div>
-         <h3>Boarding School</h3>
-         <p class="status-description">Full residential program with comprehensive care</p>
-         <div class="status-features">
-            <h4>Features:</h4>
-            <ul>
-               <li>24/7 supervised accommodation</li>
-               <li>Structured study hours</li>
-               <li>Nutritious meals (breakfast, lunch, dinner)</li>
-               <li>Weekend activities and excursions</li>
-               <li>Laundry and housekeeping services</li>
-               <li>Medical care available</li>
-            </ul>
-         </div>
-         <div class="status-benefits">
-            <h4>Benefits:</h4>
-            <ul>
-               <li>Enhanced academic focus</li>
-               <li>Development of independence</li>
-               <li>Strong peer relationships</li>
-               <li>Comprehensive character building</li>
-               <li>Time management skills</li>
-            </ul>
-         </div>
-      </div>
-   </section>
+      </section>
 
-   <section class="status-comparison">
-      <h2>Program Comparison</h2>
-      <div class="comparison-table">
-         <table>
-            <thead>
-               <tr>
-                  <th>Feature</th>
-                  <th>Day School</th>
-                  <th>Boarding School</th>
-               </tr>
-            </thead>
-            <tbody>
-               <tr>
-                  <td>Academic Supervision</td>
-                  <td><i class="fa-solid fa-check"></i> Homework support</td>
-                  <td><i class="fa-solid fa-check"></i> 24/7 academic support</td>
-               </tr>
-               <tr>
-                  <td>Meals</td>
-                  <td><i class="fa-solid fa-check"></i> Lunch provided</td>
-                  <td><i class="fa-solid fa-check"></i> All meals provided</td>
-               </tr>
-               <tr>
-                  <td>Accommodation</td>
-                  <td><i class="fa-solid fa-times"></i> Not applicable</td>
-                  <td><i class="fa-solid fa-check"></i> Fully furnished rooms</td>
-               </tr>
-               <tr>
-                  <td>Extracurricular</td>
-                  <td><i class="fa-solid fa-check"></i> After-school activities</td>
-                  <td><i class="fa-solid fa-check"></i> Comprehensive program</td>
-               </tr>
-               <tr>
-                  <td>Weekend Programs</td>
-                  <td><i class="fa-solid fa-times"></i> Limited</td>
-                  <td><i class="fa-solid fa-check"></i> Full weekend schedule</td>
-               </tr>
-            </tbody>
-         </table>
-      </div>
-   </section>
-
-   <section class="status-cta">
-      <div class="cta-content">
-         <h2>Ready to Choose?</h2>
-         <p>Contact our admissions office to learn more about our Day and Boarding programs and find the best fit for your child.</p>
-         <div class="cta-buttons">
-            <a href="contact.html" class="cta-btn primary">Contact Admissions</a>
-            <a href="registration.html" class="cta-btn secondary">Apply Now</a>
+      <section class="status-cta">
+         <div class="cta-content">
+            <h2>Ready to Choose?</h2>
+            <p>Contact our admissions office to learn more about our Day and Boarding programs and find the best fit for your child.</p>
+            <div class="cta-buttons">
+               <a href="contact.html" class="cta-btn primary">Contact Admissions</a>
+               <a href="registration.html" class="cta-btn secondary">Apply Now</a>
+            </div>
          </div>
-      </div>
-   </section>
-</div>
+      </section>
+   </div>
 
-   <!-- Gallery Section -->
-   <div class="gallery-section">
+   <!-- Gallery Preview Section -->
+   <div class="gallery-preview">
       <section class="headingSec">
          <h1><span class="highlight">School</span> Gallery</h1>
          <p>
@@ -367,36 +319,38 @@
          </p>
       </section>
 
-      <section class="gallery-grid">
-         <div class="gallery-item">
+      <section class="gallery-grid-preview">
+         <div class="gallery-item-preview">
             <img src="img/classroom-1.jpg" alt="Classroom activities">
-            <p>Interactive Learning</p>
+            <div class="gallery-overlay">
+               <p>Interactive Learning</p>
+            </div>
          </div>
          
-         <div class="gallery-item">
+         <div class="gallery-item-preview">
             <img src="img/playground.jpg" alt="Students at play">
-            <p>Play Time</p>
+            <div class="gallery-overlay">
+               <p>Play Time</p>
+            </div>
          </div>
          
-         <div class="gallery-item">
+         <div class="gallery-item-preview">
             <img src="img/assembly.jpg" alt="School assembly">
-            <p>Morning Assembly</p>
+            <div class="gallery-overlay">
+               <p>Morning Assembly</p>
+            </div>
          </div>
          
-         <div class="gallery-item">
+         <div class="gallery-item-preview">
             <img src="img/science-lab.jpg" alt="Science experiment">
-            <p>Science Exploration</p>
+            <div class="gallery-overlay">
+               <p>Science Exploration</p>
+            </div>
          </div>
-         
-         <div class="gallery-item">
-            <img src="img/art-class.jpg" alt="Art class">
-            <p>Creative Expression</p>
-         </div>
-         
-         <div class="gallery-item">
-            <img src="img/sports-day.jpg" alt="Sports activities">
-            <p>Annual Sports Day</p>
-         </div>
+      </section>
+
+      <section class="view-all-section">
+         <a href="gallery.html" class="view-all-btn">View Full Gallery</a>
       </section>
    </div>
 
