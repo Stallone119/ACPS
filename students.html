@@ -5,9 +5,286 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Students - ANOINTED CHILD PREPARATORY SCHOOL</title>
-   <link rel="icon" href="img/schlogo.jpg">
    <link rel="stylesheet" href="css/index.css">
    <link rel="stylesheet" href="css/index-responsive.css">
+   <style>
+      /* Student Counter Styles */
+      .student-counter-section {
+         width: 100%;
+         height: auto;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+         padding-block: 50px;
+         background: linear-gradient(135deg, var(--primary-red), var(--light-red));
+         color: var(--white);
+      }
+
+      .student-counter-section>section {
+         width: 85%;
+      }
+
+      .student-counter-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+         gap: 30px;
+         margin-top: 40px;
+      }
+
+      .student-counter-item {
+         background-color: rgba(255, 255, 255, 0.15);
+         padding: 40px 25px;
+         border-radius: 20px;
+         text-align: center;
+         backdrop-filter: blur(15px);
+         border: 2px solid rgba(255, 255, 255, 0.3);
+         transition: all 0.4s ease;
+         position: relative;
+         overflow: hidden;
+      }
+
+      .student-counter-item::before {
+         content: '';
+         position: absolute;
+         top: -50%;
+         left: -50%;
+         width: 200%;
+         height: 200%;
+         background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+         transform: rotate(45deg);
+         transition: all 0.6s ease;
+      }
+
+      .student-counter-item:hover::before {
+         transform: rotate(45deg) translate(50%, 50%);
+      }
+
+      .student-counter-item:hover {
+         transform: translateY(-12px) scale(1.02);
+         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+         border-color: rgba(255, 255, 255, 0.5);
+      }
+
+      .student-counter-icon {
+         width: 90px;
+         height: 90px;
+         background: rgba(255, 255, 255, 0.2);
+         border-radius: 50%;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         margin: 0 auto 25px;
+         font-size: 2.5rem;
+         color: var(--white);
+         border: 3px solid rgba(255, 255, 255, 0.3);
+         transition: all 0.3s ease;
+      }
+
+      .student-counter-item:hover .student-counter-icon {
+         background: rgba(255, 255, 255, 0.3);
+         transform: scale(1.1) rotate(5deg);
+      }
+
+      .student-counter-number {
+         font-size: 4rem;
+         font-weight: 800;
+         margin-bottom: 15px;
+         background: linear-gradient(135deg, var(--white), #f8f9fa);
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
+         background-clip: text;
+         line-height: 1;
+         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .student-counter-label {
+         font-size: 1.4rem;
+         font-weight: 700;
+         color: var(--white);
+         margin-bottom: 20px;
+         text-transform: uppercase;
+         letter-spacing: 1px;
+      }
+
+      .student-counter-description {
+         font-size: 1.1rem;
+         color: rgba(255, 255, 255, 0.9);
+         line-height: 1.6;
+         font-weight: 500;
+      }
+
+      .student-growth-badge {
+         position: absolute;
+         top: 20px;
+         right: 20px;
+         background: linear-gradient(135deg, var(--blue-black), var(--dark-blue));
+         color: var(--white);
+         padding: 8px 15px;
+         border-radius: 25px;
+         font-size: 0.85rem;
+         font-weight: bold;
+         animation: studentPulse 3s infinite;
+         box-shadow: 0 4px 15px rgba(30, 42, 71, 0.4);
+      }
+
+      @keyframes studentPulse {
+         0% {
+            transform: scale(1);
+            box-shadow: 0 4px 15px rgba(30, 42, 71, 0.4);
+         }
+         50% {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(30, 42, 71, 0.6);
+         }
+         100% {
+            transform: scale(1);
+            box-shadow: 0 4px 15px rgba(30, 42, 71, 0.4);
+         }
+      }
+
+      /* Class distribution styles */
+      .class-distribution {
+         margin-top: 50px;
+         background: rgba(255, 255, 255, 0.1);
+         padding: 30px;
+         border-radius: 15px;
+         backdrop-filter: blur(10px);
+      }
+
+      .class-distribution h3 {
+         text-align: center;
+         margin-bottom: 25px;
+         font-size: 1.8rem;
+         color: var(--white);
+      }
+
+      .class-bars {
+         display: flex;
+         flex-direction: column;
+         gap: 15px;
+      }
+
+      .class-bar {
+         display: flex;
+         align-items: center;
+         gap: 15px;
+      }
+
+      .class-name {
+         width: 100px;
+         font-weight: 600;
+         color: var(--white);
+      }
+
+      .bar-container {
+         flex: 1;
+         height: 25px;
+         background: rgba(255, 255, 255, 0.2);
+         border-radius: 12px;
+         overflow: hidden;
+      }
+
+      .bar-fill {
+         height: 100%;
+         background: linear-gradient(90deg, var(--white), #f8f9fa);
+         border-radius: 12px;
+         transition: width 1.5s ease-in-out;
+         position: relative;
+      }
+
+      .bar-fill::after {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+         animation: studentShine 2s infinite;
+      }
+
+      @keyframes studentShine {
+         0% { transform: translateX(-100%); }
+         100% { transform: translateX(100%); }
+      }
+
+      .class-count {
+         width: 50px;
+         text-align: right;
+         font-weight: 600;
+         color: var(--white);
+      }
+
+      /* Responsive adjustments */
+      @media screen and (max-width: 768px) {
+         .student-counter-grid {
+            grid-template-columns: 1fr;
+            gap: 25px;
+         }
+
+         .student-counter-item {
+            padding: 30px 20px;
+         }
+
+         .student-counter-number {
+            font-size: 3.2rem;
+         }
+
+         .student-counter-label {
+            font-size: 1.2rem;
+         }
+
+         .student-counter-icon {
+            width: 75px;
+            height: 75px;
+            font-size: 2rem;
+         }
+      }
+
+      @media screen and (max-width: 480px) {
+         .student-counter-section {
+            padding-block: 40px;
+         }
+
+         .student-counter-section>section {
+            width: 90%;
+         }
+
+         .student-counter-number {
+            font-size: 2.8rem;
+         }
+
+         .student-counter-icon {
+            width: 65px;
+            height: 65px;
+            font-size: 1.8rem;
+         }
+
+         .class-distribution {
+            padding: 20px 15px;
+         }
+
+         .class-bar {
+            flex-direction: column;
+            gap: 8px;
+            text-align: center;
+         }
+
+         .class-name {
+            width: 100%;
+         }
+
+         .bar-container {
+            width: 100%;
+         }
+
+         .class-count {
+            width: 100%;
+            text-align: center;
+         }
+      }
+   </style>
 </head>
 
 <body>
@@ -15,7 +292,7 @@
       <header class="mainHeader">
          <section class="logoSec">
             <div class="logo-placeholder">
-               <img src="img/schlogo.jpg" alt="School Logo" id="school-logo">
+               <img src="img/logo.png" alt="School Logo" id="school-logo">
                <span>ACPS</span>
             </div>
             <div class="school-name">
@@ -27,15 +304,15 @@
 
          <section class="navItems" id="navItems">
             <span><a href="index.html">Home</a></span>
-            <span><a href="headmaster.html">Headmaster</a></span>
-             <span><a href="proprietors.html">Proprietors</a></span>
-            <span><a href="staff.html">Staff</a></span>
-            <span><a href="students.html">Students</a></span>
             <span><a href="registration.html">Registration</a></span>
             <span><a href="academics.html">Academics</a></span>
-            <span><a href="studentmaterials.html">Student Materials</a></span>
             <span><a href="contact.html">Contact Us</a></span>
             <span><a href="about.html">About Us</a></span>
+            <span><a href="proprietors.html">Proprietors</a></span>
+            <span><a href="headmaster.html">Headmaster</a></span>
+            <span><a href="staff.html">Staff</a></span>
+            <span><a href="students.html">Students</a></span>
+            <span><a href="studentmaterials.html">Student Materials</a></span>
          </section>
 
          <section class="hamburgerIcon" id="hamburgerIcon" onclick="showMenu()">
@@ -52,6 +329,83 @@
             </p>
          </section>
       </div>
+   </div>
+
+   <!-- Student Counter Section -->
+   <div class="student-counter-section">
+      <section class="headingSec">
+         <h1><span class="highlight">Our</span> Student Community</h1>
+         <p>
+            Growing together in knowledge, faith, and character
+         </p>
+      </section>
+
+      <section>
+         <div class="student-counter-grid">
+            <div class="student-counter-item">
+               <div class="student-counter-icon">
+                  <i class="fa-solid fa-graduation-cap"></i>
+               </div>
+               <div class="student-counter-number" id="totalStudentsCounter">0</div>
+               <div class="student-counter-label">Total Students</div>
+               <div class="student-counter-description">Active learners across all grade levels</div>
+               <div class="student-growth-badge">+12% Growth</div>
+            </div>
+            
+            <div class="student-counter-item">
+               <div class="student-counter-icon">
+                  <i class="fa-solid fa-child"></i>
+               </div>
+               <div class="student-counter-number" id="kindergartenCounter">0</div>
+               <div class="student-counter-label">Kindergarten</div>
+               <div class="student-counter-description">Our youngest learners exploring the world</div>
+            </div>
+            
+            <div class="student-counter-item">
+               <div class="student-counter-icon">
+                  <i class="fa-solid fa-user-graduate"></i>
+               </div>
+               <div class="student-counter-number" id="primaryCounter">0</div>
+               <div class="student-counter-label">Primary School</div>
+               <div class="student-counter-description">Building strong academic foundations</div>
+            </div>
+         </div>
+
+         <!-- Class Distribution -->
+         <div class="class-distribution">
+            <h3>Class Distribution</h3>
+            <div class="class-bars">
+               <div class="class-bar">
+                  <div class="class-name">Kindergarten</div>
+                  <div class="bar-container">
+                     <div class="bar-fill" id="kgBar" style="width: 0%"></div>
+                  </div>
+                  <div class="class-count" id="kgCount">0</div>
+               </div>
+               <div class="class-bar">
+                  <div class="class-name">Primary 1-2</div>
+                  <div class="bar-container">
+                     <div class="bar-fill" id="p1p2Bar" style="width: 0%"></div>
+                  </div>
+                  <div class="class-count" id="p1p2Count">0</div>
+               </div>
+               <div class="class-bar">
+                  <div class="class-name">Primary 3-4</div>
+                  <div class="bar-container">
+                     <div class="bar-fill" id="p3p4Bar" style="width: 0%"></div>
+                  </div>
+                  <div class="class-count" id="p3p4Count">0</div>
+               </div>
+               <div class="class-bar">
+                  <div class="class-name">Primary 5-6</div>
+                  <div class="bar-container">
+                     <div class="bar-fill" id="p5p6Bar" style="width: 0%"></div>
+                  </div>
+                  <div class="class-count" id="p5p6Count">0</div>
+               </div>
+            </div>
+         </div>
+      </section>
    </div>
 
    <div class="students-section">
@@ -195,7 +549,66 @@
 
    <script src="js/index.js"></script>
    <script src="https://kit.fontawesome.com/ba1e04a511.js" crossorigin="anonymous"></script>
+   <script>
+      // Student Counter animation function
+      function animateStudentCounter(element, target, duration = 2000) {
+         let start = 0;
+         const increment = target / (duration / 16);
+         const timer = setInterval(() => {
+            start += increment;
+            if (start >= target) {
+               element.textContent = Math.round(target).toLocaleString();
+               clearInterval(timer);
+            } else {
+               element.textContent = Math.round(start).toLocaleString();
+            }
+         }, 16);
+      }
+
+      // Animate bar fills
+      function animateBars() {
+         const kgBar = document.getElementById('kgBar');
+         const p1p2Bar = document.getElementById('p1p2Bar');
+         const p3p4Bar = document.getElementById('p3p4Bar');
+         const p5p6Bar = document.getElementById('p5p6Bar');
+
+         setTimeout(() => {
+            kgBar.style.width = '18%';
+            p1p2Bar.style.width = '25%';
+            p3p4Bar.style.width = '30%';
+            p5p6Bar.style.width = '27%';
+         }, 500);
+      }
+
+      // Initialize student counters when page loads
+      document.addEventListener('DOMContentLoaded', function() {
+         // Student numbers - update these with your actual numbers
+         const totalStudents = 285;
+         const kindergartenStudents = 52;
+         const primaryStudents = 233;
+
+         // Class distribution numbers
+         const kgCount = 52;
+         const p1p2Count = 71;
+         const p3p4Count = 85;
+         const p5p6Count = 77;
+
+         // Animate main counters
+         setTimeout(() => {
+            animateStudentCounter(document.getElementById('totalStudentsCounter'), totalStudents);
+            animateStudentCounter(document.getElementById('kindergartenCounter'), kindergartenStudents);
+            animateStudentCounter(document.getElementById('primaryCounter'), primaryStudents);
+         }, 500);
+
+         // Animate class counts and bars
+         setTimeout(() => {
+            document.getElementById('kgCount').textContent = kgCount;
+            document.getElementById('p1p2Count').textContent = p1p2Count;
+            document.getElementById('p3p4Count').textContent = p3p4Count;
+            document.getElementById('p5p6Count').textContent = p5p6Count;
+            animateBars();
+         }, 1000);
+      });
+   </script>
 </body>
 </html>
-
-
