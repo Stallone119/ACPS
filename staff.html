@@ -5,9 +5,275 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Staff - ANOINTED CHILD PREPARATORY SCHOOL</title>
-     <link rel="icon" href="img/schlogo.jpg">
    <link rel="stylesheet" href="css/index.css">
    <link rel="stylesheet" href="css/index-responsive.css">
+   <style>
+      /* Staff Counter Styles */
+      .staff-counter-section {
+         width: 100%;
+         height: auto;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+         padding-block: 50px;
+         background: linear-gradient(135deg, var(--blue-black), var(--dark-blue));
+         color: var(--white);
+      }
+
+      .staff-counter-section>section {
+         width: 85%;
+      }
+
+      .staff-counter-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+         gap: 30px;
+         margin-top: 40px;
+      }
+
+      .staff-counter-item {
+         background-color: rgba(255, 255, 255, 0.12);
+         padding: 45px 25px;
+         border-radius: 20px;
+         text-align: center;
+         backdrop-filter: blur(20px);
+         border: 2px solid rgba(255, 255, 255, 0.25);
+         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+         position: relative;
+         overflow: hidden;
+      }
+
+      .staff-counter-item::before {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: -100%;
+         width: 100%;
+         height: 100%;
+         background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+         transition: left 0.6s ease;
+      }
+
+      .staff-counter-item:hover::before {
+         left: 100%;
+      }
+
+      .staff-counter-item:hover {
+         transform: translateY(-15px) scale(1.03);
+         box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+         border-color: rgba(255, 255, 255, 0.4);
+      }
+
+      .staff-counter-icon {
+         width: 100px;
+         height: 100px;
+         background: linear-gradient(135deg, var(--primary-red), var(--light-red));
+         border-radius: 50%;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         margin: 0 auto 30px;
+         font-size: 2.8rem;
+         color: var(--white);
+         border: 4px solid rgba(255, 255, 255, 0.3);
+         transition: all 0.4s ease;
+         box-shadow: 0 8px 25px rgba(178, 34, 52, 0.4);
+      }
+
+      .staff-counter-item:hover .staff-counter-icon {
+         transform: scale(1.15) rotate(10deg);
+         box-shadow: 0 12px 35px rgba(178, 34, 52, 0.6);
+      }
+
+      .staff-counter-number {
+         font-size: 4.2rem;
+         font-weight: 900;
+         margin-bottom: 20px;
+         background: linear-gradient(135deg, var(--white), #e8f4f8);
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
+         background-clip: text;
+         line-height: 1;
+         text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+         letter-spacing: -1px;
+      }
+
+      .staff-counter-label {
+         font-size: 1.5rem;
+         font-weight: 700;
+         color: var(--white);
+         margin-bottom: 25px;
+         text-transform: uppercase;
+         letter-spacing: 1.5px;
+         position: relative;
+      }
+
+      .staff-counter-label::after {
+         content: '';
+         position: absolute;
+         bottom: -10px;
+         left: 50%;
+         transform: translateX(-50%);
+         width: 60px;
+         height: 3px;
+         background: linear-gradient(90deg, var(--primary-red), var(--light-red));
+         border-radius: 2px;
+      }
+
+      .staff-counter-description {
+         font-size: 1.15rem;
+         color: rgba(255, 255, 255, 0.95);
+         line-height: 1.7;
+         font-weight: 500;
+      }
+
+      .staff-experience-badge {
+         position: absolute;
+         top: 25px;
+         right: 25px;
+         background: linear-gradient(135deg, var(--primary-red), var(--light-red));
+         color: var(--white);
+         padding: 10px 18px;
+         border-radius: 30px;
+         font-size: 0.9rem;
+         font-weight: bold;
+         animation: staffGlow 4s infinite;
+         box-shadow: 0 6px 20px rgba(178, 34, 52, 0.5);
+         z-index: 2;
+      }
+
+      @keyframes staffGlow {
+         0%, 100% {
+            box-shadow: 0 6px 20px rgba(178, 34, 52, 0.5);
+            transform: scale(1);
+         }
+         50% {
+            box-shadow: 0 8px 30px rgba(178, 34, 52, 0.8);
+            transform: scale(1.05);
+         }
+      }
+
+      /* Staff expertise chart */
+      .staff-expertise {
+         margin-top: 60px;
+         background: rgba(255, 255, 255, 0.08);
+         padding: 40px;
+         border-radius: 20px;
+         backdrop-filter: blur(15px);
+         border: 1px solid rgba(255, 255, 255, 0.15);
+      }
+
+      .staff-expertise h3 {
+         text-align: center;
+         margin-bottom: 35px;
+         font-size: 2rem;
+         color: var(--white);
+         text-transform: uppercase;
+         letter-spacing: 1px;
+      }
+
+      .expertise-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+         gap: 25px;
+      }
+
+      .expertise-item {
+         text-align: center;
+         padding: 25px 15px;
+         background: rgba(255, 255, 255, 0.1);
+         border-radius: 15px;
+         transition: all 0.3s ease;
+      }
+
+      .expertise-item:hover {
+         background: rgba(255, 255, 255, 0.15);
+         transform: translateY(-5px);
+      }
+
+      .expertise-icon {
+         font-size: 2.5rem;
+         color: var(--primary-red);
+         margin-bottom: 15px;
+      }
+
+      .expertise-count {
+         font-size: 2.2rem;
+         font-weight: 800;
+         color: var(--white);
+         margin-bottom: 8px;
+      }
+
+      .expertise-label {
+         font-size: 1.1rem;
+         color: rgba(255, 255, 255, 0.9);
+         font-weight: 600;
+      }
+
+      /* Responsive adjustments */
+      @media screen and (max-width: 768px) {
+         .staff-counter-grid {
+            grid-template-columns: 1fr;
+            gap: 25px;
+         }
+
+         .staff-counter-item {
+            padding: 35px 20px;
+         }
+
+         .staff-counter-number {
+            font-size: 3.5rem;
+         }
+
+         .staff-counter-label {
+            font-size: 1.3rem;
+         }
+
+         .staff-counter-icon {
+            width: 85px;
+            height: 85px;
+            font-size: 2.3rem;
+         }
+
+         .expertise-grid {
+            grid-template-columns: repeat(2, 1fr);
+         }
+      }
+
+      @media screen and (max-width: 480px) {
+         .staff-counter-section {
+            padding-block: 40px;
+         }
+
+         .staff-counter-section>section {
+            width: 90%;
+         }
+
+         .staff-counter-number {
+            font-size: 3rem;
+         }
+
+         .staff-counter-icon {
+            width: 75px;
+            height: 75px;
+            font-size: 2rem;
+         }
+
+         .staff-expertise {
+            padding: 25px 20px;
+         }
+
+         .expertise-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+         }
+
+         .expertise-item {
+            padding: 20px 15px;
+         }
+      }
+   </style>
 </head>
 
 <body>
@@ -15,7 +281,7 @@
       <header class="mainHeader">
          <section class="logoSec">
             <div class="logo-placeholder">
-               <img src="img/schlogo.jpg" alt="School Logo" id="school-logo">
+               <img src="img/logo.png" alt="School Logo" id="school-logo">
                <span>ACPS</span>
             </div>
             <div class="school-name">
@@ -27,15 +293,14 @@
 
          <section class="navItems" id="navItems">
             <span><a href="index.html">Home</a></span>
-            <span><a href="headmaster.html">Headmaster</a></span>
-             <span><a href="proprietors.html">Proprietors</a></span>
-            <span><a href="staff.html">Staff</a></span>
-            <span><a href="students.html">Students</a></span>
             <span><a href="registration.html">Registration</a></span>
             <span><a href="academics.html">Academics</a></span>
-            <span><a href="studentmaterials.html">Student Materials</a></span>
             <span><a href="contact.html">Contact Us</a></span>
             <span><a href="about.html">About Us</a></span>
+            <span><a href="proprietors.html">Proprietors</a></span>
+            <span><a href="headmaster.html">Headmaster</a></span>
+            <span><a href="staff.html">Staff</a></span>
+            <span><a href="students.html">Students</a></span>
          </section>
 
          <section class="hamburgerIcon" id="hamburgerIcon" onclick="showMenu()">
@@ -52,6 +317,83 @@
             </p>
          </section>
       </div>
+   </div>
+
+   <!-- Staff Counter Section -->
+   <div class="staff-counter-section">
+      <section class="headingSec">
+         <h1><span class="highlight">Our</span> Professional Team</h1>
+         <p>
+            Committed educators and support staff working together for excellence
+         </p>
+      </section>
+
+      <section>
+         <div class="staff-counter-grid">
+            <div class="staff-counter-item">
+               <div class="staff-counter-icon">
+                  <i class="fa-solid fa-chalkboard-user"></i>
+               </div>
+               <div class="staff-counter-number" id="totalStaffCounter">0</div>
+               <div class="staff-counter-label">Total Staff</div>
+               <div class="staff-counter-description">Dedicated professionals serving our school community</div>
+               <div class="staff-experience-badge">Expert Team</div>
+            </div>
+            
+            <div class="staff-counter-item">
+               <div class="staff-counter-icon">
+                  <i class="fa-solid fa-user-tie"></i>
+               </div>
+               <div class="staff-counter-number" id="teachingStaffCounter">0</div>
+               <div class="staff-counter-label">Teaching Staff</div>
+               <div class="staff-counter-description">Qualified educators with passion for teaching</div>
+            </div>
+            
+            <div class="staff-counter-item">
+               <div class="staff-counter-icon">
+                  <i class="fa-solid fa-hands-helping"></i>
+               </div>
+               <div class="staff-counter-number" id="supportStaffCounter">0</div>
+               <div class="staff-counter-label">Support Staff</div>
+               <div class="staff-counter-description">Administrative and operational support team</div>
+            </div>
+         </div>
+
+         <!-- Staff Expertise Section -->
+         <div class="staff-expertise">
+            <h3>Staff Expertise</h3>
+            <div class="expertise-grid">
+               <div class="expertise-item">
+                  <div class="expertise-icon">
+                     <i class="fa-solid fa-book"></i>
+                  </div>
+                  <div class="expertise-count" id="languageExperts">0</div>
+                  <div class="expertise-label">Language Experts</div>
+               </div>
+               <div class="expertise-item">
+                  <div class="expertise-icon">
+                     <i class="fa-solid fa-calculator"></i>
+                  </div>
+                  <div class="expertise-count" id="mathExperts">0</div>
+                  <div class="expertise-label">Math Specialists</div>
+               </div>
+               <div class="expertise-item">
+                  <div class="expertise-icon">
+                     <i class="fa-solid fa-flask"></i>
+                  </div>
+                  <div class="expertise-count" id="scienceExperts">0</div>
+                  <div class="expertise-label">Science Teachers</div>
+               </div>
+               <div class="expertise-item">
+                  <div class="expertise-icon">
+                     <i class="fa-solid fa-paint-brush"></i>
+                  </div>
+                  <div class="expertise-count" id="artsExperts">0</div>
+                  <div class="expertise-label">Arts Educators</div>
+               </div>
+            </div>
+         </div>
+      </section>
    </div>
 
    <div class="staff-section">
@@ -194,10 +536,50 @@
 
    <script src="js/index.js"></script>
    <script src="https://kit.fontawesome.com/ba1e04a511.js" crossorigin="anonymous"></script>
+   <script>
+      // Staff Counter animation function
+      function animateStaffCounter(element, target, duration = 2000) {
+         let start = 0;
+         const increment = target / (duration / 16);
+         const timer = setInterval(() => {
+            start += increment;
+            if (start >= target) {
+               element.textContent = Math.round(target).toLocaleString();
+               clearInterval(timer);
+            } else {
+               element.textContent = Math.round(start).toLocaleString();
+            }
+         }, 16);
+      }
+
+      // Initialize staff counters when page loads
+      document.addEventListener('DOMContentLoaded', function() {
+         // Staff numbers - update these with your actual numbers
+         const totalStaff = 30;
+         const teachingStaff = 18;
+         const supportStaff = 12;
+
+         // Expertise numbers
+         const languageExperts = 6;
+         const mathExperts = 4;
+         const scienceExperts = 5;
+         const artsExperts = 3;
+
+         // Animate main counters
+         setTimeout(() => {
+            animateStaffCounter(document.getElementById('totalStaffCounter'), totalStaff);
+            animateStaffCounter(document.getElementById('teachingStaffCounter'), teachingStaff);
+            animateStaffCounter(document.getElementById('supportStaffCounter'), supportStaff);
+         }, 500);
+
+         // Animate expertise counters
+         setTimeout(() => {
+            animateStaffCounter(document.getElementById('languageExperts'), languageExperts, 1500);
+            animateStaffCounter(document.getElementById('mathExperts'), mathExperts, 1500);
+            animateStaffCounter(document.getElementById('scienceExperts'), scienceExperts, 1500);
+            animateStaffCounter(document.getElementById('artsExperts'), artsExperts, 1500);
+         }, 1000);
+      });
+   </script>
 </body>
-
 </html>
-
-
-
-
