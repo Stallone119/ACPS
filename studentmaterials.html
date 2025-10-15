@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Student Materials - ANOINTED CHILD PREPARATORY SCHOOL</title>
+   <link rel="stylesheet" href="css/index.css">
+   <link rel="stylesheet" href="css/index-responsive.css">
+   <style>
+      /* Additional styles for materials page */
+      .materials-section {
+         width: 100%;
+         height: auto;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+         padding-block: 50px;
+         background-color: var(--white);
+      }
+
+      .materials-section>section {
+         width: 85%;
+         margin-bottom: 40px;
+      }
+
+      .materials-tabs {
+         display: flex;
+         justify-content: center;
+         margin-bottom: 30px;
+         border-bottom: 2px solid var(--light-gray);
+         flex-wrap: wrap;
+      }
+
+      .tab-button {
+         padding: 15px 30px;
+         background: none;
+         border: none;
+         font-size: 1.1rem;
+         font-weight: bold;
+         color: var(--blue-black);
+         cursor: pointer;
+         transition: all 0.3s ease;
+         position: relative;
+      }
+
+      .tab-button.active {
+         color: var(--primary-red);
+      }
+
+      .tab-button.active::after {
+         content: '';
+         position: absolute;
+         bottom: -2px;
+         left: 0;
+         width: 100%;
+         height: 3px;
+         background-color: var(--primary-red);
+      }
+
+      .tab-button:hover {
+         color: var(--primary-red);
+      }
+
+      .tab-content {
+         display: none;
+         animation: fadeIn 0.5s ease;
+      }
+
+      .tab-content.active {
+         display: block;
+      }
+
+      @keyframes fadeIn {
+         from { opacity: 0; }
+         to { opacity: 1; }
+      }
+
+      .materials-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+         gap: 25px;
+         margin-top: 30px;
+      }
+
+      .material-card {
+         background-color: var(--light-gray);
+         border-radius: 10px;
+         padding: 25px;
+         border-top: 4px solid var(--primary-red);
+         transition: transform 0.3s ease, box-shadow 0.3s ease;
+         position: relative;
+      }
+
+      .material-card:hover {
+         transform: translateY(-5px);
+         box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      }
+
+      .material-icon {
+         width: 60px;
+         height: 60px;
+         background-color: var(--primary-red);
+         color: var(--white);
+         border-radius: 50%;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         font-size: 1.5rem;
+         margin-bottom: 15px;
+      }
+
+      .material-card h3 {
+         color: var(--blue-black);
+         margin-bottom: 10px;
+         font-size: 1.3rem;
+      }
+
+      .material-card p {
+         color: var(--dark-blue);
+         margin-bottom: 20px;
+         line-height: 1.5;
+      }
+
+      .material-meta {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         margin-bottom: 15px;
+         font-size: 0.9rem;
+         color: var(--dark-blue);
+      }
+
+      .file-size {
+         background-color: var(--medium-gray);
+         padding: 3px 8px;
+         border-radius: 10px;
+         font-size: 0.8rem;
+      }
+
+      .material-actions {
+         display: flex;
+         gap: 10px;
+      }
+
+      .btn {
+         padding: 10px 20px;
+         border: none;
+         border-radius: 5px;
+         font-weight: bold;
+         cursor: pointer;
+         transition: all 0.3s ease;
+         text-decoration: none;
+         display: inline-flex;
+         align-items: center;
+         justify-content: center;
+         gap: 8px;
+         font-size: 0.9rem;
+      }
+
+      .btn-primary {
+         background-color: var(--primary-red);
+         color: var(--white);
+      }
+
+      .btn-primary:hover {
+         background-color: var(--dark-red);
+      }
+
+      .btn-secondary {
+         background-color: var(--blue-black);
+         color: var(--white);
+      }
+
+      .btn-secondary:hover {
+         background-color: var(--dark-blue);
+      }
+
+      .btn-outline {
+         background-color: transparent;
+         color: var(--primary-red);
+         border: 2px solid var(--primary-red);
+      }
+
+      .btn-outline:hover {
+         background-color: var(--primary-red);
+         color: var(--white);
+      }
+
+      .assignment-list {
+         display: flex;
+         flex-direction: column;
+         gap: 20px;
+         margin-top: 30px;
+      }
+
+      .assignment-item {
+         background-color: var(--light-gray);
+         border-radius: 10px;
+         padding: 25px;
+         border-left: 5px solid var(--primary-red);
+         transition: transform 0.3s ease;
+      }
+
+      .assignment-item:hover {
+         transform: translateX(5px);
+      }
+
+      .assignment-header {
+         display: flex;
+         justify-content: between;
+         align-items: flex-start;
+         margin-bottom: 15px;
+         flex-wrap: wrap;
+         gap: 15px;
+      }
+
+      .assignment-title {
+         flex: 1;
+      }
+
+      .assignment-title h3 {
+         color: var(--blue-black);
+         margin-bottom: 5px;
+      }
+
+      .assignment-meta {
+         display: flex;
+         gap: 15px;
+         flex-wrap: wrap;
+      }
+
+      .assignment-meta span {
+         background-color: var(--white);
+         padding: 5px 10px;
+         border-radius: 15px;
+         font-size: 0.9rem;
+         font-weight: bold;
+      }
+
+      .assignment-due {
+         background-color: var(--light-red) !important;
+         color: var(--white);
+      }
+
+      .assignment-subject {
+         background-color: var(--blue-black) !important;
+         color: var(--white);
+      }
+
+      .assignment-description {
+         margin-bottom: 20px;
+         line-height: 1.6;
+      }
+
+      .assignment-actions {
+         display: flex;
+         gap: 10px;
+         flex-wrap: wrap;
+      }
+
+      .submission-status {
+         margin-top: 15px;
+         padding: 10px 15px;
+         border-radius: 5px;
+         font-weight: bold;
+      }
+
+      .submitted {
+         background-color: rgba(46, 204, 113, 0.2);
+         color: #27ae60;
+         border-left: 3px solid #27ae60;
+      }
+
+      .pending {
+         background-color: rgba(241, 196, 15, 0.2);
+         color: #f39c12;
+         border-left: 3px solid #f39c12;
+      }
+
+      .overdue {
+         background-color: rgba(231, 76, 60, 0.2);
+         color: #c0392b;
+         border-left: 3px solid #c0392b;
+      }
+
+      .search-filter {
+         display: flex;
+         gap: 15px;
+         margin-bottom: 30px;
+         flex-wrap: wrap;
+      }
+
+      .search-box {
+         flex: 1;
+         min-width: 250px;
+         position: relative;
+      }
+
+      .search-box input {
+         width: 100%;
+         padding: 12px 15px 12px 40px;
+         border: 1px solid var(--medium-gray);
+         border-radius: 5px;
+         font-size: 1rem;
+      }
+
+      .search-box i {
+         position: absolute;
+         left: 15px;
+         top: 50%;
+         transform: translateY(-50%);
+         color: var(--dark-blue);
+      }
+
+      .filter-select {
+         padding: 12px 15px;
+         border: 1px solid var(--medium-gray);
+         border-radius: 5px;
+         background-color: var(--white);
+         font-size: 1rem;
+         min-width: 180px;
+      }
+
+      .empty-state {
+         text-align: center;
+         padding: 50px 20px;
+         color: var(--dark-blue);
+      }
+
+      .empty-state i {
+         font-size: 3rem;
+         color: var(--medium-gray);
+         margin-bottom: 15px;
+      }
+
+      .google-form-container {
+         width: 100%;
+         height: 1200px;
+         border: none;
+         border-radius: 10px;
+         overflow: hidden;
+         margin-top: 20px;
+      }
+
+      .upload-instructions {
+         background-color: var(--light-gray);
+         padding: 25px;
+         border-radius: 10px;
+         margin-bottom: 30px;
+      }
+
+      .upload-instructions h3 {
+         color: var(--primary-red);
+         margin-bottom: 15px;
+      }
+
+      .upload-instructions ol {
+         padding-left: 20px;
+      }
+
+      .upload-instructions li {
+         margin-bottom: 10px;
+         color: var(--blue-black);
+      }
+
+      .materials-categories {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 15px;
+         margin-bottom: 30px;
+      }
+
+      .category-tag {
+         padding: 8px 15px;
+         background-color: var(--light-gray);
+         border-radius: 20px;
+         font-size: 0.9rem;
+         cursor: pointer;
+         transition: all 0.3s ease;
+      }
+
+      .category-tag.active {
+         background-color: var(--primary-red);
+         color: var(--white);
+      }
+
+      .category-tag:hover {
+         background-color: var(--primary-red);
+         color: var(--white);
+      }
+
+      @media screen and (max-width: 768px) {
+         .materials-tabs {
+            flex-direction: column;
+            align-items: center;
+         }
+
+         .tab-button {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 5px;
+         }
+
+         .assignment-header {
+            flex-direction: column;
+         }
+
+         .assignment-meta {
+            width: 100%;
+         }
+
+         .search-filter {
+            flex-direction: column;
+         }
+
+         .search-box, .filter-select {
+            width: 100%;
+         }
+      }
+   </style>
+</head>
+
+<body>
+   <div class="coverDiv">
+      <header class="mainHeader">
+         <section class="logoSec">
+            <div class="logo-placeholder">
+               <img src="img/logo.png" alt="School Logo" id="school-logo">
+               <span>ACPS</span>
+            </div>
+            <div class="school-name">
+               <h1>ANOINTED CHILD PREPARATORY SCHOOL</h1>
+               <p class="motto">"In God We Trust"</p>
+               <p class="location">Anyinam (Atiwa East District) Eastern Region, Ghana</p>
+            </div>
+         </section>
+
+         <section class="navItems" id="navItems">
+            <span><a href="index.html">Home</a></span>
+            <span><a href="registration.html">Registration</a></span>
+            <span><a href="academics.html">Academics</a></span>
+            <span><a href="contact.html">Contact Us</a></span>
+            <span><a href="about.html">About Us</a></span>
+            <span><a href="proprietors.html">Proprietors</a></span>
+            <span><a href="headmaster.html">Headmaster</a></span>
+            <span><a href="staff.html">Staff</a></span>
+            <span><a href="students.html">Students</a></span>
+            <span><a href="studentmaterials.html" class="active">Student Materials</a></span>
+         </section>
+
+         <section class="hamburgerIcon" id="hamburgerIcon" onclick="showMenu()">
+            <i class="fa-solid fa-bars"></i>
+         </section>
+      </header>
+
+      <div class="mainDiv">
+         <section class="mainSec">
+            <h1>Student Materials Portal</h1>
+            <p>
+               Access learning materials, download resources, and submit assignments all in one place.
+            </p>
+         </section>
+      </div>
+   </div>
+
+   <div class="materials-section">
+      <section class="headingSec">
+         <h1><span class="highlight">Student</span> Learning Resources</h1>
+         <p>
+            Find all your course materials, assignments, and resources organized by subject and class.
+         </p>
+      </section>
+
+      <section class="materials-tabs">
+         <button class="tab-button active" data-tab="materials">Learning Materials</button>
+         <button class="tab-button" data-tab="assignments">Assignments</button>
+         <button class="tab-button" data-tab="submit">Submit Work</button>
+      </section>
+
+      <!-- Learning Materials Tab -->
+      <section class="tab-content active" id="materials-tab">
+         <section class="search-filter">
+            <div class="search-box">
+               <i class="fa-solid fa-magnifying-glass"></i>
+               <input type="text" id="searchMaterials" placeholder="Search materials...">
+            </div>
+            <select class="filter-select" id="subjectFilter">
+               <option value="all">All Subjects</option>
+               <option value="mathematics">Mathematics</option>
+               <option value="english">English</option>
+               <option value="science">Science</option>
+               <option value="social">Social Studies</option>
+               <option value="creative">Creative Arts</option>
+               <option value="computing">Computing</option>
+            </select>
+            <select class="filter-select" id="classFilter">
+               <option value="all">All Classes</option>
+               <option value="kg">Kindergarten</option>
+               <option value="primary1">Primary 1</option>
+               <option value="primary2">Primary 2</option>
+               <option value="primary3">Primary 3</option>
+               <option value="primary4">Primary 4</option>
+               <option value="primary5">Primary 5</option>
+               <option value="primary6">Primary 6</option>
+            </select>
+         </section>
+
+         <div class="materials-categories">
+            <div class="category-tag active" data-category="all">All</div>
+            <div class="category-tag" data-category="notes">Notes</div>
+            <div class="category-tag" data-category="worksheets">Worksheets</div>
+            <div class="category-tag" data-category="textbooks">Textbooks</div>
+            <div class="category-tag" data-category="videos">Videos</div>
+            <div class="category-tag" data-category="presentations">Presentations</div>
+         </div>
+
+         <div class="materials-grid" id="materialsGrid">
+            <!-- Material cards will be populated by JavaScript -->
+            <div class="material-card" data-subject="mathematics" data-class="primary4" data-category="notes">
+               <div class="material-icon">
+                  <i class="fa-solid fa-book"></i>
+               </div>
+               <h3>Mathematics Notes - Fractions</h3>
+               <p>Comprehensive notes on fractions including proper, improper, and mixed fractions with examples.</p>
+               <div class="material-meta">
+                  <span>Primary 4</span>
+                  <span class="file-size">PDF - 2.4 MB</span>
+               </div>
+               <div class="material-actions">
+                  <a href="materials/math/primary4/fractions-notes.pdf" class="btn btn-primary" download>
+                     <i class="fa-solid fa-download"></i> Download
+                  </a>
+                  <a href="materials/math/primary4/fractions-notes.pdf" class="btn btn-outline" target="_blank">
+                     <i class="fa-solid fa-eye"></i> View
+                  </a>
+               </div>
+            </div>
+
+            <div class="material-card" data-subject="english" data-class="primary3" data-category="worksheets">
+               <div class="material-icon">
+                  <i class="fa-solid fa-file-lines"></i>
+               </div>
+               <h3>English Worksheet - Grammar</h3>
+               <p>Practice worksheet on nouns, verbs, and adjectives with exercises and answer key.</p>
+               <div class="material-meta">
+                  <span>Primary 3</span>
+                  <span class="file-size">DOCX - 1.8 MB</span>
+               </div>
+               <div class="material-actions">
+                  <a href="materials/english/primary3/grammar-worksheet.docx" class="btn btn-primary" download>
+                     <i class="fa-solid fa-download"></i> Download
+                  </a>
+                  <a href="#" class="btn btn-outline">
+                     <i class="fa-solid fa-eye"></i> View
+                  </a>
+               </div>
+            </div>
+
+            <div class="material-card" data-subject="science" data-class="primary5" data-category="textbooks">
+               <div class="material-icon">
+                  <i class="fa-solid fa-book-open"></i>
+               </div>
+               <h3>Science Textbook - Plants</h3>
+               <p>Complete chapter on plant biology, photosynthesis, and plant classification.</p>
+               <div class="material-meta">
+                  <span>Primary 5</span>
+                  <span class="file-size">PDF - 5.2 MB</span>
+               </div>
+               <div class="material-actions">
+                  <a href="materials/science/primary5/plants-textbook.pdf" class="btn btn-primary" download>
+                     <i class="fa-solid fa-download"></i> Download
+                  </a>
+                  <a href="materials/science/primary5/plants-textbook.pdf" class="btn btn-outline" target="_blank">
+                     <i class="fa-solid fa-eye"></i> View
+                  </a>
+               </div>
+            </div>
+
+            <div class="material-card" data-subject="social" data-class="primary6" data-category="presentations">
+               <div class="material-icon">
+                  <i class="fa-solid fa-chart-bar"></i>
+               </div>
+               <h3>Social Studies - Ghana History</h3>
+               <p>Presentation on the history of Ghana from pre-colonial times to independence.</p>
+               <div class="material-meta">
+                  <span>Primary 6</span>
+                  <span class="file-size">PPTX - 8.7 MB</span>
+               </div>
+               <div class="material-actions">
+                  <a href="materials/social/primary6/ghana-history.pptx" class="btn btn-primary" download>
+                     <i class="fa-solid fa-download"></i> Download
+                  </a>
+                  <a href="#" class="btn btn-outline">
+                     <i class="fa-solid fa-eye"></i> View
+                  </a>
+               </div>
+            </div>
+
+            <div class="material-card" data-subject="creative" data-class="primary2" data-category="videos">
+               <div class="material-icon">
+                  <i class="fa-solid fa-video"></i>
+               </div>
+               <h3>Creative Arts - Drawing Shapes</h3>
+               <p>Video tutorial on drawing basic shapes and creating simple objects from them.</p>
+               <div class="material-meta">
+                  <span>Primary 2</span>
+                  <span class="file-size">MP4 - 15.3 MB</span>
+               </div>
+               <div class="material-actions">
+                  <a href="materials/creative/primary2/drawing-shapes.mp4" class="btn btn-primary" download>
+                     <i class="fa-solid fa-download"></i> Download
+                  </a>
+                  <a href="#" class="btn btn-outline">
+                     <i class="fa-solid fa-eye"></i> Watch
+                  </a>
+               </div>
+            </div>
+
+            <div class="material-card" data-subject="computing" data-class="primary4" data-category="worksheets">
+               <div class="material-icon">
+                  <i class="fa-solid fa-computer"></i>
+               </div>
+               <h3>Computing - Parts of Computer</h3>
+               <p>Worksheet identifying different parts of a computer and their functions.</p>
+               <div class="material-meta">
+                  <span>Primary 4</span>
+                  <span class="file-size">PDF - 1.2 MB</span>
+               </div>
+               <div class="material-actions">
+                  <a href="materials/computing/primary4/computer-parts.pdf" class="btn btn-primary" download>
+                     <i class="fa-solid fa-download"></i> Download
+                  </a>
+                  <a href="materials/computing/primary4/computer-parts.pdf" class="btn btn-outline" target="_blank">
+                     <i class="fa-solid fa-eye"></i> View
+                  </a>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- Assignments Tab -->
+      <section class="tab-content" id="assignments-tab">
+         <section class="search-filter">
+            <div class="search-box">
+               <i class="fa-solid fa-magnifying-glass"></i>
+               <input type="text" id="searchAssignments" placeholder="Search assignments...">
+            </div>
+            <select class="filter-select" id="assignmentSubjectFilter">
+               <option value="all">All Subjects</option>
+               <option value="mathematics">Mathematics</option>
+               <option value="english">English</option>
+               <option value="science">Science</option>
+               <option value="social">Social Studies</option>
+               <option value="creative">Creative Arts</option>
+            </select>
+            <select class="filter-select" id="statusFilter">
+               <option value="all">All Status</option>
+               <option value="pending">Pending</option>
+               <option value="submitted">Submitted</option>
+               <option value="overdue">Overdue</option>
+            </select>
+         </section>
+
+         <div class="assignment-list" id="assignmentList">
+            <div class="assignment-item" data-subject="mathematics" data-status="pending">
+               <div class="assignment-header">
+                  <div class="assignment-title">
+                     <h3>Mathematics Assignment: Fractions Practice</h3>
+                     <p>Complete exercises 1-10 on page 45 of your textbook</p>
+                  </div>
+                  <div class="assignment-meta">
+                     <span class="assignment-due">Due: Oct 25, 2025</span>
+                     <span class="assignment-subject">Mathematics</span>
+                  </div>
+               </div>
+               <div class="assignment-description">
+                  <p>This assignment covers addition and subtraction of fractions with like denominators. Show all your work and simplify your answers where possible.</p>
+               </div>
+               <div class="assignment-actions">
+                  <a href="assignments/math/fractions-practice.pdf" class="btn btn-primary" download>
+                     <i class="fa-solid fa-download"></i> Download Assignment
+                  </a>
+                  <a href="#submit" class="btn btn-secondary tab-switch" data-tab="submit">
+                     <i class="fa-solid fa-upload"></i> Submit Work
+                  </a>
+               </div>
+               <div class="submission-status pending">
+                  <i class="fa-solid fa-clock"></i> Not Submitted - Due in 10 days
+               </div>
+            </div>
+
+            <div class="assignment-item" data-subject="english" data-status="submitted">
+               <div class="assignment-header">
+                  <div class="assignment-title">
+                     <h3>English Essay: My Favorite Season</h3>
+                     <p>Write a 200-word essay about your favorite season</p>
+                  </div>
+                  <div class="assignment-meta">
+                     <span class="assignment-due">Due: Oct 18, 2025</span>
+                     <span class="assignment-subject">English</span>
+                  </div>
+               </div>
+               <div class="assignment-description">
+                  <p>Describe why you like this season, what activities you enjoy during it, and include at least three descriptive adjectives in your essay.</p>
+               </div>
+               <div class="assignment-actions">
+                  <a href="assignments/english/season-essay.pdf" class="btn btn-primary" download>
+                     <i class="fa-solid fa-download"></i> Download Instructions
+                  </a>
+                  <a href="#" class="btn btn-outline">
+                     <i class="fa-solid fa-eye"></i> View Submission
+                  </a>
+               </div>
+               <div class="submission-status submitted">
+                  <i class="fa-solid fa-check"></i> Submitted on Oct 15, 2025
+               </div>
+            </div>
+
+            <div class="assignment-item" data-subject="science" data-status="pending">
+               <div class="assignment-header">
+                  <div class="assignment-title">
+                     <h3>Science Project: Plant Growth Observation</h3>
+                     <p>Observe and record plant growth over two weeks</p>
+                  </div>
+                  <div class="assignment-meta">
+                     <span class="assignment-due">Due: Nov 5, 2025</span>
+                     <span class="assignment-subject">Science</span>
+                  </div>
+               </div>
+               <div class="assignment-description">
+                  <p>Plant a bean seed and record its growth daily for two weeks. Include measurements, drawings, and notes about changes you observe.</p>
+               </div>
+               <div class="assignment-actions">
+                  <a href="assignments/science/plant-project.pdf" class="btn btn-primary" download>
+                     <i class="fa-solid fa-download"></i> Download Project Guide
+                  </a>
+                  <a href="#submit" class="btn btn-secondary tab-switch" data-tab="submit">
+                     <i class="fa-solid fa-upload"></i> Submit Work
+                  </a>
+               </div>
+               <div class="submission-status pending">
+                  <i class="fa-solid fa-clock"></i> Not Submitted - Due in 21 days
+               </div>
+            </div>
+
+            <div class="assignment-item" data-subject="social" data-status="overdue">
+               <div class="assignment-header">
+                  <div class="assignment-title">
+                     <h3>Social Studies: Map of Ghana</h3>
+                     <p>Draw and label a map of Ghana showing regions and major cities</p>
+                  </div>
+                  <div class="assignment-meta">
+                     <span class="assignment-due">Due: Oct 10, 2025</span>
+                     <span class="assignment-subject">Social Studies</span>
+                  </div>
+               </div>
+               <div class="assignment-description">
+                  <p>Create a detailed map of Ghana showing all 16 regions and at least 5 major cities. Include a compass rose and scale.</p>
+               </div>
+               <div class="assignment-actions">
+                  <a href="assignments/social/ghana-map.pdf" class="btn btn-primary" download>
+                     <i class="fa-solid fa-download"></i> Download Template
+                  </a>
+                  <a href="#submit" class="btn btn-secondary tab-switch" data-tab="submit">
+                     <i class="fa-solid fa-upload"></i> Submit Work
+                  </a>
+               </div>
+               <div class="submission-status overdue">
+                  <i class="fa-solid fa-exclamation-triangle"></i> Overdue - Please submit as soon as possible
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- Submit Work Tab -->
+      <section class="tab-content" id="submit-tab">
+         <section class="upload-instructions">
+            <h3>How to Submit Your Assignment</h3>
+            <ol>
+               <li>Complete your assignment following the instructions provided by your teacher</li>
+               <li>Save your work with a clear filename (e.g., "YourName_Mathematics_Fractions.pdf")</li>
+               <li>Fill out the form below with your details</li>
+               <li>Upload your completed assignment file</li>
+               <li>Click "Submit Assignment" to send your work to your teacher</li>
+            </ol>
+            <p><strong>Note:</strong> You can only submit each assignment once. Make sure your work is complete before submitting.</p>
+         </section>
+
+         <div class="google-form-container">
+            <!-- Replace with your actual Google Form embed code -->
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfEXAMPLE/viewform?embedded=true" 
+                    width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+         </div>
+
+         <div class="form-alternative">
+            <h3>Alternative Submission Method</h3>
+            <p>If you're having trouble with the form above, you can also email your assignment directly to your teacher.</p>
+            <a href="mailto:teacher@anointedchildschool.edu.gh?subject=Assignment Submission">
+               <i class="fa-solid fa-envelope"></i> Email Assignment
+            </a>
+         </div>
+      </section>
+   </div>
+
+   <div class="divSeven">
+      <section class="headingSec">
+         <h1><span class="highlight">Need</span> Help?</h1>
+         <p>
+            Contact your teacher if you have questions about materials or assignments.
+         </p>
+      </section>
+
+      <section class="firstSec">
+         <a href="#">
+            <i class="fa-brands fa-facebook"></i>
+         </a>
+         <a href="#">
+            <i class="fa-brands fa-instagram"></i>
+         </a>
+         <a href="#">
+            <i class="fa-brands fa-youtube"></i>
+         </a>
+         <a href="#">
+            <i class="fa-brands fa-twitter"></i>
+         </a>
+      </section>
+
+      <section class="firstSec">
+         <p>
+            Made with <i class="fa-regular fa-heart"></i> 
+            by <a href="https://github.com/Stallone119/">Addae Prince</a>
+         </p>
+      </section>
+   </div>
+
+   <script src="js/index.js"></script>
+   <script src="https://kit.fontawesome.com/ba1e04a511.js" crossorigin="anonymous"></script>
+   <script>
+      // Tab functionality
+      document.addEventListener('DOMContentLoaded', function() {
+         const tabButtons = document.querySelectorAll('.tab-button');
+         const tabContents = document.querySelectorAll('.tab-content');
+         
+         tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+               // Remove active class from all buttons and contents
+               tabButtons.forEach(btn => btn.classList.remove('active'));
+               tabContents.forEach(content => content.classList.remove('active'));
+               
+               // Add active class to clicked button
+               button.classList.add('active');
+               
+               // Show corresponding content
+               const tabId = button.getAttribute('data-tab');
+               document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+         });
+
+         // Tab switching from assignment buttons
+         document.querySelectorAll('.tab-switch').forEach(button => {
+            button.addEventListener('click', function(e) {
+               e.preventDefault();
+               const targetTab = this.getAttribute('data-tab');
+               
+               // Remove active class from all buttons and contents
+               tabButtons.forEach(btn => btn.classList.remove('active'));
+               tabContents.forEach(content => content.classList.remove('active'));
+               
+               // Add active class to target button and content
+               document.querySelector(`.tab-button[data-tab="${targetTab}"]`).classList.add('active');
+               document.getElementById(`${targetTab}-tab`).classList.add('active');
+            });
+         });
+
+         // Filter functionality for materials
+         const searchMaterials = document.getElementById('searchMaterials');
+         const subjectFilter = document.getElementById('subjectFilter');
+         const classFilter = document.getElementById('classFilter');
+         const materialsGrid = document.getElementById('materialsGrid');
+         const materialCards = materialsGrid.querySelectorAll('.material-card');
+         const categoryTags = document.querySelectorAll('.category-tag');
+
+         function filterMaterials() {
+            const searchTerm = searchMaterials.value.toLowerCase();
+            const subjectValue = subjectFilter.value;
+            const classValue = classFilter.value;
+            const activeCategory = document.querySelector('.category-tag.active').getAttribute('data-category');
+            
+            materialCards.forEach(card => {
+               const title = card.querySelector('h3').textContent.toLowerCase();
+               const subject = card.getAttribute('data-subject');
+               const cardClass = card.getAttribute('data-class');
+               const category = card.getAttribute('data-category');
+               
+               const matchesSearch = title.includes(searchTerm);
+               const matchesSubject = subjectValue === 'all' || subject === subjectValue;
+               const matchesClass = classValue === 'all' || cardClass === classValue;
+               const matchesCategory = activeCategory === 'all' || category === activeCategory;
+               
+               if (matchesSearch && matchesSubject && matchesClass && matchesCategory) {
+                  card.style.display = 'block';
+               } else {
+                  card.style.display = 'none';
+               }
+            });
+         }
+
+         searchMaterials.addEventListener('input', filterMaterials);
+         subjectFilter.addEventListener('change', filterMaterials);
+         classFilter.addEventListener('change', filterMaterials);
+
+         // Category tag functionality
+         categoryTags.forEach(tag => {
+            tag.addEventListener('click', function() {
+               categoryTags.forEach(t => t.classList.remove('active'));
+               this.classList.add('active');
+               filterMaterials();
+            });
+         });
+
+         // Filter functionality for assignments
+         const searchAssignments = document.getElementById('searchAssignments');
+         const assignmentSubjectFilter = document.getElementById('assignmentSubjectFilter');
+         const statusFilter = document.getElementById('statusFilter');
+         const assignmentList = document.getElementById('assignmentList');
+         const assignmentItems = assignmentList.querySelectorAll('.assignment-item');
+
+         function filterAssignments() {
+            const searchTerm = searchAssignments.value.toLowerCase();
+            const subjectValue = assignmentSubjectFilter.value;
+            const statusValue = statusFilter.value;
+            
+            assignmentItems.forEach(item => {
+               const title = item.querySelector('h3').textContent.toLowerCase();
+               const subject = item.getAttribute('data-subject');
+               const status = item.getAttribute('data-status');
+               
+               const matchesSearch = title.includes(searchTerm);
+               const matchesSubject = subjectValue === 'all' || subject === subjectValue;
+               const matchesStatus = statusValue === 'all' || status === statusValue;
+               
+               if (matchesSearch && matchesSubject && matchesStatus) {
+                  item.style.display = 'block';
+               } else {
+                  item.style.display = 'none';
+               }
+            });
+         }
+
+         searchAssignments.addEventListener('input', filterAssignments);
+         assignmentSubjectFilter.addEventListener('change', filterAssignments);
+         statusFilter.addEventListener('change', filterAssignments);
+      });
+   </script>
+</body>
+</html>
